@@ -1,0 +1,75 @@
+{% extends 'basic.html' %}
+
+{% block basic_title %} Srot :: Home{% endblock basic_title %}
+
+{% block basic_head %}
+
+    <link rel="stylesheet" href="/media/css/home.css">
+    <link rel="stylesheet" href="https://cdn.3up.dk/mdi@2.2.43/css/materialdesignicons.min.css">
+
+{% endblock basic_head %}
+
+{% block basic_body %}
+
+    <main>
+        <!-- Main Container -->
+        <div class="container col-xxl-10 px-1 py-1" style="margin-top: 20px; margin-bottom: 80px;">
+
+            <!-- Hero Section -->
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5" style="margin-top: -40px; margin-bottom: 40px;">
+                <div class="col-sm-12 col-lg-6">
+                    <img src="/media/images/diseaseDetection/detection_hero.jpg" class="d-block mx-lg-auto img-fluid" width="900" height="700"
+                        loading="lazy">
+                </div>
+                <div class="col-lg-6" id="hero_text_div">
+                    <h1 class="display-5 fw-bold lh-1 mb-3"
+                        style="font-size: 48px; color: #00adb5;font-family: oswald;">FarmGen - Detect <br> Crop
+                        Diseases</h1>
+                    <p class="lead">Just upload the image of your crop and wait for the detection of the image. Once the disease is detected you will get the steps how to cure the disease.</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <button style="background-color: #47E0B0; border-color: white;" class="btn btn-primary btn-lg px-4 me-md-2" onclick="document.getElementById('imageUpload').click();">
+                            Upload Image
+                        </button>
+                        <input id="imageUpload" type="file" style="display: none;" accept="image/*" onchange="uploadImage()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="probableImageRow">
+                <h4><b>Select which one is most close: </b></h4>
+                <div class="col-md-4">
+                    <div class="card" style="width:100%">
+                        <img id="probabledisease1" src="" alt="Avatar" style="width:100%">
+                        <div class="container" style="text-align: center;margin-bottom: 15px; margin-top: 15px">
+                            <button type="button" style="color: #47E0B0;border-color:#47E0B0;" class="btn btn-outline-success btn-lg px-4 me-md-2">Select</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="width:100%">
+                        <img id="probabledisease2" src="" alt="Avatar" style="width:100%">
+                        <div class="container" style="text-align: center;margin-bottom: 15px; margin-top: 15px">
+                            <button type="button" style="color: #47E0B0;border-color:#47E0B0;" class="btn btn-outline-success btn-lg px-4 me-md-2">Select</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="width:100%">
+                        <img id="probabledisease3" src="" alt="Avatar" style="width:100%">
+                        <div class="container" style="text-align: center;margin-bottom: 15px; margin-top: 15px">
+                            <button type="button" style="color: #47E0B0;border-color:#47E0B0;" class="btn btn-outline-success btn-lg px-4 me-md-2">Select</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h1 id="final_disease" class="display-5 fw-bold lh-1 mb-3"
+                style="font-size: 48px; color: #00adb5;font-family: oswald;"></h1>
+
+        </div>
+    </main>
+{% endblock basic_body %}
+
+{% block basic_scripts %}
+<script src="/media/js/detectDisease.js"></script>
+{% endblock basic_scripts %}
