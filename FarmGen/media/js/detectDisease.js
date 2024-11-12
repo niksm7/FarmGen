@@ -67,6 +67,7 @@ async function getBedrockResponse(disease_name) {
             if(result.status == "Success"){
                 document.getElementById("cure_details_div").hidden = false
                 document.getElementById("detail_p").innerHTML = result.response
+                document.getElementById("detail_audio").src = "/media/audiofiles/" + result.audio_filename
             } else {
                 console.log("Error: " + result.response)
             }

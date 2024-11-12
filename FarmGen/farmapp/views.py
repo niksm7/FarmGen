@@ -6,6 +6,7 @@ from langchain_mongodb import MongoDBAtlasVectorSearch
 from farmapp.intialize import *
 from farmapp.promptsCollection import *
 from farmapp.getLLMResponse import getBedrockResponseQA
+from farmapp.pollyResponse import getPollyResponse
 
 
 def home(request):
@@ -46,12 +47,12 @@ def getBedrockResponse(request):
         vectorStore = MongoDBAtlasVectorSearch(
             disease_cure_collection, embeddings_model_text, index_name=disease_cure_index
         )
-        prompt = getPromptForDiseaseCure(given_language="English")
+        prompt = getPromptForDiseaseCure(given_language="French")
         print("All good till here!")
         try:
             response = getBedrockResponseQA(query, vectorStore, prompt).replace("\n", "<br>")
-
-            return JsonResponse({"status": "Success", "response": response})
+            polly_response_filename = getPollyResponse(given_text=response, given_language="French")
+            return JsonResponse({"status": "Success", "response": response, "audio_filename": polly_response_filename})
         except Exception as e:
             print("Error: ", e)
             return JsonResponse({"status": "Error", "response": str(e)})
@@ -61,6 +62,6 @@ def replaceNth(s, source, target, n):
     inds = [i for i in range(len(s) - len(source)+1) if s[i:i+len(source)]==source]
     if len(inds) < n:
         return  s
-    s = list(s)  # can't assign to string slices. So, let's listify
-    s[inds[n-1]:inds[n-1]+len(source)] = target  # do n-1 because we start from the first occurrence of the string, not the 0-th
+    s = list(s)
+    s[inds[n-1]:inds[n-1]+len(source)] = target
     return ''.join(s)

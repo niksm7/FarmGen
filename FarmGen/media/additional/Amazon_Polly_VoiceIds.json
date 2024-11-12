@@ -1,0 +1,142 @@
+{
+    "Arabic (Gulf)": {
+        "LanguageId": "ar-AE",
+        "VoiceName": "Hala"
+    },
+    "Belgian Dutch (Flemish)": {
+        "LanguageId": "nl-BE",
+        "VoiceName": "Lisa"
+    },
+    "Catalan": {
+        "LanguageId": "ca-ES",
+        "VoiceName": "Arlet"
+    },
+    "Czech": {
+        "LanguageId": "cs-CZ",
+        "VoiceName": "Jitka"
+    },
+    "Chinese (Cantonese)": {
+        "LanguageId": "yue-CN",
+        "VoiceName": "Hiujin"
+    },
+    "Chinese (Mandarin)": {
+        "LanguageId": "cmn-CN",
+        "VoiceName": "Zhiyu"
+    },
+    "Danish": {
+        "LanguageId": "da-DK",
+        "VoiceName": "Sofie"
+    },
+    "Dutch": {
+        "LanguageId": "nl-NL",
+        "VoiceName": "Laura"
+    },
+    "English (Australian)": {
+        "LanguageId": "en-AU",
+        "VoiceName": "Olivia"
+    },
+    "English (British)": {
+        "LanguageId": "en-GB",
+        "VoiceName": "Emma"
+    },
+    "English (Indian)": {
+        "LanguageId": "en-IN",
+        "VoiceName": "Kajal"
+    },
+    "English (Irish)": {
+        "LanguageId": "en-IE",
+        "VoiceName": "Niamh"
+    },
+    "English (New Zealand)": {
+        "LanguageId": "en-NZ",
+        "VoiceName": "Aria"
+    },
+    "English (South African)": {
+        "LanguageId": "en-ZA",
+        "VoiceName": "Ayanda"
+    },
+    "English (US)": {
+        "LanguageId": "en-US",
+        "VoiceName": "Danielle"
+    },
+    "Finnish": {
+        "LanguageId": "fi-FI",
+        "VoiceName": "Suvi"
+    },
+    "French (Belgian)": {
+        "LanguageId": "fr-BE",
+        "VoiceName": "Isabelle"
+    },
+    "French (Canadian)": {
+        "LanguageId": "fr-CA",
+        "VoiceName": "Gabrielle"
+    },
+    "French": {
+        "LanguageId": "fr-FR",
+        "VoiceName": "Lea"
+    },
+    "German": {
+        "LanguageId": "de-DE",
+        "VoiceName": "Vicki"
+    },
+    "German (Austrian)": {
+        "LanguageId": "de-AT",
+        "VoiceName": "Hannah"
+    },
+    "German (Swiss)": {
+        "LanguageId": "de-CH",
+        "VoiceName": "Sabrina"
+    },
+    "Hindi": {
+        "LanguageId": "hi-IN",
+        "VoiceName": "Kajal"
+    },
+    "Italian": {
+        "LanguageId": "it-IT",
+        "VoiceName": "Bianca"
+    },
+    "Japanese": {
+        "LanguageId": "ja-JP",
+        "VoiceName": "Takumi"
+    },
+    "Korean": {
+        "LanguageId": "ko-KR",
+        "VoiceName": "Seoyeon"
+    },
+    "Norwegian": {
+        "LanguageId": "nb-NO",
+        "VoiceName": "Ida"
+    },
+    "Polish": {
+        "LanguageId": "pl-PL",
+        "VoiceName": "Ola"
+    },
+    "Portuguese (Brazilian)": {
+        "LanguageId": "pt-BR",
+        "VoiceName": "Camila"
+    },
+    "Portuguese (European)": {
+        "LanguageId": "pt-PT",
+        "VoiceName": "Ines"
+    },
+    "Spanish (European)": {
+        "LanguageId": "es-ES",
+        "VoiceName": "Lucia"
+    },
+    "Spanish (Mexican)": {
+        "LanguageId": "es-MX",
+        "VoiceName": "Mia"
+    },
+    "Spanish (US)": {
+        "LanguageId": "es-US",
+        "VoiceName": "Pedro"
+    },
+    "Swedish": {
+        "LanguageId": "sv-SE",
+        "VoiceName": "Elin"
+    },
+    "Turkish": {
+        "LanguageId": "tr-TR",
+        "VoiceName": "Burcu"
+    }
+}

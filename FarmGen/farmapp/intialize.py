@@ -1,10 +1,12 @@
 import os
 import certifi
 import boto3
+import json
 from langchain_aws.embeddings import BedrockEmbeddings
 from pymongo import MongoClient
 from dotenv import load_dotenv
 from langchain_aws import ChatBedrock
+from django.conf import settings
 
 load_dotenv()
 
@@ -23,3 +25,7 @@ crop_recommendation_collection = client[os.getenv("CROP_RECOMMENDATION_DB_NAME")
 disease_cure_index = os.getenv("DISEASE_CURE_INDEX_NAME")
 disease_detect_index = os.getenv("DISEASE_DETECT_INDEX_NAME")
 crop_recommendation_index = os.getenv("CROP_RECOMMENDATION_INDEX_NAME")
+
+aws_polly_file_path = os.path.join(settings.BASE_DIR, 'media', 'additional', 'Amazon_Polly_VoiceIds.json')
+with open(aws_polly_file_path, 'r') as json_file:
+    aws_polly_voice_data = json.load(json_file)
