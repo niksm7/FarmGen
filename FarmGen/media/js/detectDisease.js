@@ -52,6 +52,8 @@ async function displayDetectedDisease(disease_name){
 }
 
 async function getBedrockResponse(disease_name) {
+    document.getElementById("spinner").style.display = "block"
+    document.getElementById("main_content").classList.add("blurred")
     const formData = new FormData();
     formData.append('disease_name', disease_name);
 
@@ -77,4 +79,6 @@ async function getBedrockResponse(disease_name) {
     } catch (error) {
         console.error('Error Calling bedrock:', error);
     }
+    document.getElementById("spinner").style.display = "none"
+    document.getElementById("main_content").classList.remove("blurred")
 }

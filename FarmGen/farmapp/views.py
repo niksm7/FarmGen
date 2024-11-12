@@ -47,11 +47,11 @@ def getBedrockResponse(request):
         vectorStore = MongoDBAtlasVectorSearch(
             disease_cure_collection, embeddings_model_text, index_name=disease_cure_index
         )
-        prompt = getPromptForDiseaseCure(given_language="French")
+        prompt = getPromptForDiseaseCure(given_language="English")
         print("All good till here!")
         try:
             response = getBedrockResponseQA(query, vectorStore, prompt).replace("\n", "<br>")
-            polly_response_filename = getPollyResponse(given_text=response, given_language="French")
+            polly_response_filename = getPollyResponse(given_text=response)
             return JsonResponse({"status": "Success", "response": response, "audio_filename": polly_response_filename})
         except Exception as e:
             print("Error: ", e)
