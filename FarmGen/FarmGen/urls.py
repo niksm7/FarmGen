@@ -24,5 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name="home"),
     path('detectdisease/', views.detectDisease, name="detectDisease"),
-    path('uploadimagedisease/', views.uploadImageDisease, name="uploadImageDisease")
+    path('uploadimagedisease/', views.uploadImageDisease, name="uploadImageDisease"),
+    path('getbedrockresponse/', views.getBedrockResponse, name="getBedrockResponse")
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

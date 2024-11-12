@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.core.files.storage import default_storage
-from django.core.files.base import ContentFile
 from farmapp.queryVectorData import queryDiseaseDetectionImage
+from langchain_mongodb import MongoDBAtlasVectorSearch
+from farmapp.intialize import *
+from farmapp.promptsCollection import *
+from farmapp.getLLMResponse import getBedrockResponseQA
+
 
 def home(request):
     return render(request, "home.html")
@@ -11,12 +14,13 @@ def home(request):
 def detectDisease(request):
     return render(request, "detectDisease.html")
 
+
 @csrf_exempt
 def uploadImageDisease(request):
     if request.method == "POST":
         file_data = request.FILES.get("diseaseFile")
         data_output = queryDiseaseDetectionImage(file_data)
-        print(data_output)
+
         result_disease_count = {}
         result_type = "ProbableImages"
         for key in data_output:
@@ -29,3 +33,34 @@ def uploadImageDisease(request):
         if result_type == "Definite":
             return JsonResponse({"type": result_type, "result_disease": list(result_disease_count.keys())[0]})
         return JsonResponse({"type": result_type, "suggested_images": result_disease_count})
+
+@csrf_exempt
+def getBedrockResponse(request):
+    if request.method == "POST":
+        disease_name = request.POST.get("disease_name")
+        disease_name = disease_name.replace("___", " ").replace("_", " ")
+        disease_name = replaceNth(disease_name.lower(), disease_name.split(" ")[0].lower(), "", 2)
+        disease_name = disease_name.replace("  ", " ")
+        query = f"{disease_name} control cure"
+
+        vectorStore = MongoDBAtlasVectorSearch(
+            disease_cure_collection, embeddings_model_text, index_name=disease_cure_index
+        )
+        prompt = getPromptForDiseaseCure(given_language="English")
+        print("All good till here!")
+        try:
+            response = getBedrockResponseQA(query, vectorStore, prompt).replace("\n", "<br>")
+
+            return JsonResponse({"status": "Success", "response": response})
+        except Exception as e:
+            print("Error: ", e)
+            return JsonResponse({"status": "Error", "response": str(e)})
+
+
+def replaceNth(s, source, target, n):
+    inds = [i for i in range(len(s) - len(source)+1) if s[i:i+len(source)]==source]
+    if len(inds) < n:
+        return  s
+    s = list(s)  # can't assign to string slices. So, let's listify
+    s[inds[n-1]:inds[n-1]+len(source)] = target  # do n-1 because we start from the first occurrence of the string, not the 0-th
+    return ''.join(s)

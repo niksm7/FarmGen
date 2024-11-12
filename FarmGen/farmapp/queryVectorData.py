@@ -35,7 +35,7 @@ def queryDiseaseDetectionImage(query_image):
         image_file = doc['filename']
         image_disease = doc['disease']
         image_score = doc['score']
-        print("Current Doc: ", [image_file, image_disease, image_score])
+
         if lowest_score == 0:
             detected_images_information[image_score] = [image_file, image_disease, image_score]
             lowest_score = image_score

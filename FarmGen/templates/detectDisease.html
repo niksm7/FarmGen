@@ -25,7 +25,7 @@
                     <h1 class="display-5 fw-bold lh-1 mb-3"
                         style="font-size: 48px; color: #00adb5;font-family: oswald;">FarmGen - Detect <br> Crop
                         Diseases</h1>
-                    <p class="lead">Just upload the image of your crop and wait for the detection of the image. Once the disease is detected you will get the steps how to cure the disease.</p>
+                    <p>Just upload the image of your crop and wait for the detection of the image. Once the disease is detected you will get the steps how to cure the disease.</p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                         <button style="background-color: #47E0B0; border-color: white;" class="btn btn-primary btn-lg px-4 me-md-2" onclick="document.getElementById('imageUpload').click();">
                             Upload Image
@@ -41,7 +41,7 @@
                     <div class="card" style="width:100%">
                         <img id="probabledisease1" src="" alt="Avatar" style="width:100%">
                         <div class="container" style="text-align: center;margin-bottom: 15px; margin-top: 15px">
-                            <button type="button" style="color: #47E0B0;border-color:#47E0B0;" class="btn btn-outline-success btn-lg px-4 me-md-2">Select</button>
+                            <button type="button" id="buttonprobabledisease1" style="color: #47E0B0;border-color:#47E0B0;" class="btn btn-outline-success btn-lg px-4 me-md-2">Select</button>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     <div class="card" style="width:100%">
                         <img id="probabledisease2" src="" alt="Avatar" style="width:100%">
                         <div class="container" style="text-align: center;margin-bottom: 15px; margin-top: 15px">
-                            <button type="button" style="color: #47E0B0;border-color:#47E0B0;" class="btn btn-outline-success btn-lg px-4 me-md-2">Select</button>
+                            <button type="button" id="buttonprobabledisease2" style="color: #47E0B0;border-color:#47E0B0;" class="btn btn-outline-success btn-lg px-4 me-md-2">Select</button>
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     <div class="card" style="width:100%">
                         <img id="probabledisease3" src="" alt="Avatar" style="width:100%">
                         <div class="container" style="text-align: center;margin-bottom: 15px; margin-top: 15px">
-                            <button type="button" style="color: #47E0B0;border-color:#47E0B0;" class="btn btn-outline-success btn-lg px-4 me-md-2">Select</button>
+                            <button type="button"  id="buttonprobabledisease3" style="color: #47E0B0;border-color:#47E0B0;" class="btn btn-outline-success btn-lg px-4 me-md-2">Select</button>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,13 @@
             
             <h1 id="final_disease" class="display-5 fw-bold lh-1 mb-3"
                 style="font-size: 48px; color: #00adb5;font-family: oswald;"></h1>
+            
 
+            <div class="col-lg-6" id="cure_details_div">
+                <h1 class="display-5 fw-bold lh-1 mb-3"
+                    style="font-size: 48px; color: #00adb5;font-family: oswald;">The Details to Cure:</h1>
+                <p id="detail_p"></p>
+            </div>
         </div>
     </main>
 {% endblock basic_body %}
