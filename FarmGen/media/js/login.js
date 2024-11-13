@@ -12,18 +12,9 @@ signInButton.addEventListener('click', () => {
 });
 
 function getLocation(){
-	if ("geolocation" in navigator) {
-		navigator.geolocation.getCurrentPosition(
-		(position) => {
-			const lat = position.coords.latitude;
-			const lng = position.coords.longitude;
-			document.getElementById("location_coordinates").value = `${lat} ${lng}`
-		},
-		(error) => {
-			console.error("Error getting user location:", error);
-		}
-		);
-	} else {
-		console.error("Geolocation is not supported by this browser.");
-	}
+	$.get("https://api.ipdata.co?api-key=a826677e341edcf50998fa5373bc70af115e2ee66cd35645f455280d", function(response) {
+		const lat = response.latitude;
+		const lng = response.longitude;
+		document.getElementById("location_coordinates").value = `${lat} ${lng}`
+	}, "jsonp");
 }
