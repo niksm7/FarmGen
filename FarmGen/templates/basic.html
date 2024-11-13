@@ -40,14 +40,18 @@
 
 				<a href="/detectdisease" class="nav-item nav-link">Detect Disease</a>
 
-				<a href="/gethelp" class="nav-item nav-link">Get Help</a>
+				<a href="/chatbot" class="nav-item nav-link">Get Help</a>
 
+				{% if request.session.uid %}
 				<div class="nav-item dropdown">
 					<a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle">Welcome<span><i class="fa fa-caret-down"></i></span></a>
 					<div class="dropdown-menu">
-						<a href="#" class="dropdown-item">Logout</a>
+						<a href="/logout" class="dropdown-item">Logout</a>
 					</div>
 				</div>
+				{% else %}
+				<a href="/login" class="nav-item nav-link">Login/Signup</a>
+				{% endif %}
 
 			</div>
 		</div>

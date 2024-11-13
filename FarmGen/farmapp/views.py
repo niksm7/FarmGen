@@ -115,9 +115,7 @@ def handleLogin(request):
         request.session['uid'] = str(session_id)
         request.session['location_coors'] = user.location_coors
         request.session['language'] = user.language
-        
         return HttpResponseRedirect(reverse("detectDisease"))
-
     return render(request, 'login.html', {"all_languages": aws_polly_voice_data.keys()})
 
 def handleSignUpUser(request):
