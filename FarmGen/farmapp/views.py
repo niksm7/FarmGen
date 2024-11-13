@@ -31,7 +31,9 @@ def home(request):
     return render(request, "home.html")
 
 def detectDisease(request):
-    return render(request, "detectDisease.html")
+    if request.session.get("uid"):
+        return render(request, "detectDisease.html")
+    return HttpResponseRedirect(reverse("login"))
 
 @csrf_exempt
 def uploadImageDisease(request):
@@ -75,7 +77,9 @@ def getBedrockResponse(request):
             return JsonResponse({"status": "Error", "response": str(e)})
 
 def chatBotDisplay(request):
-    return render(request, "chatBot.html")
+    if request.session.get("uid"):
+        return render(request, "chatBot.html")
+    return HttpResponseRedirect(reverse("login"))
 
 @csrf_exempt
 def getChatbotResponse(request):
@@ -116,7 +120,9 @@ def handleLogin(request):
         request.session['location_coors'] = user.location_coors
         request.session['language'] = user.language
         return HttpResponseRedirect(reverse("detectDisease"))
-    return render(request, 'login.html', {"all_languages": aws_polly_voice_data.keys()})
+    if not request.session.get("uid"):
+        return render(request, 'login.html', {"all_languages": aws_polly_voice_data.keys()})
+    return HttpResponseRedirect(reverse("detectDisease"))
 
 def handleSignUpUser(request):
     if request.method == "POST":
