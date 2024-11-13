@@ -10,9 +10,10 @@ from random import randint
 from langchain.agents import initialize_agent
 from farmapp.queryVectorData import queryTextData
 
+location_coordinates = ""
+
 def get_coordinates(*args, **kwargs):
-    # Fetch from the farmers data saved from the session storage
-    return "18.5458 73.9427399"
+    return location_coordinates
 
 def get_climate_details(*args, **kwargs):
     coordinates = get_coordinates()
@@ -83,9 +84,11 @@ def intializeAgent():
     )
     return agent_executor
 
-def getAgentResponse(given_query):
+def getAgentResponse(given_query, location_cords):
+    global location_coordinates
+    location_coordinates = location_cords
     # user_query = "Can you recommend me a crop to grow based on my climate conditions?"
-    # user_query = "Can you best practice to grow healthy crops?"
+    # user_query = "Can you suggest best practice to grow healthy crops?"
     agent = intializeAgent()
     response = agent.invoke({"input": given_query})
     return response.get("output")
