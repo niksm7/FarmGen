@@ -18,8 +18,8 @@ llm_model = ChatBedrock(model_id=os.getenv("BEDROCK_LLM_MODEL_ID"),client=bedroc
 client = MongoClient(os.getenv("MONGODB_CONN_STRING"), tlsCAFile=certifi.where())
 disease_cure_collection = client[os.getenv("DISEASE_CURE_DB_NAME")][os.getenv("DISEASE_CURE_COLL_NAME")]
 disease_detection_collection = client[os.getenv("DISEASE_DETECT_DB_NAME")][os.getenv("DISEASE_DETECT_COLL_NAME")]
-crop_recommendation_collection = client[os.getenv("CROP_RECOMMENDATION_DB_NAME")][os.getenv("CROP_RECOMMENDATION_COLL_NAME")]
+farm_best_practices_collection = client[os.getenv("FARM_BEST_PRACTICES_DB_NAME")][os.getenv("FARM_BEST_PRACTICES_COLL_NAME")]
 
 disease_cure_index = os.getenv("DISEASE_CURE_INDEX_NAME")
 disease_detect_index = os.getenv("DISEASE_DETECT_INDEX_NAME")
-crop_recommendation_index = os.getenv("CROP_RECOMMENDATION_INDEX_NAME")
+farm_best_practices_index = os.getenv("FARM_BEST_PRACTICES_INDEX_NAME")

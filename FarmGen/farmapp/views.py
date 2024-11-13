@@ -7,6 +7,7 @@ from farmapp.intialize import *
 from farmapp.promptsCollection import *
 from farmapp.getLLMResponse import getBedrockResponseQA
 from farmapp.pollyResponse import getPollyResponse
+from farmapp.agentWorkflow import *
 
 
 def home(request):
@@ -57,6 +58,20 @@ def getBedrockResponse(request):
             print("Error: ", e)
             return JsonResponse({"status": "Error", "response": str(e)})
 
+def chatBotDisplay(request):
+    return render(request, "chatBot.html")
+
+@csrf_exempt
+def getChatbotResponse(request):
+    if request.method == "POST":
+        request_content = json.loads(request.body.decode('utf-8'))
+        query = request_content.get("message")
+        try:
+            res = getAgentResponse(query)
+            return JsonResponse({"status":"success", "response": res})
+        except Exception as e:
+            print(e)
+            return JsonResponse({"status": "error", "response": "Sorry, I can't answer this qestion"})
 
 def replaceNth(s, source, target, n):
     inds = [i for i in range(len(s) - len(source)+1) if s[i:i+len(source)]==source]

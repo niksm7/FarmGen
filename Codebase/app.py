@@ -15,7 +15,7 @@ disease_detection_pdf_dir = "DiseaseDetectionPdfs"
 # res = data_ingestion_text(knowledge_base_dir + "/DiseaseDetectionPdfs", disease_cure_collection, disease_cure_index)
 # print(res)
 
-# res = data_ingestion_text(knowledge_base_dir + "/AdditionalKnowledge", disease_cure_collection, disease_cure_index)
+# res = data_ingestion_text(knowledge_base_dir + "/AdditionalKnowledge", farm_best_practices_collection, farm_best_practices_index)
 # print(res)
 
 # res = data_ingestion_text(knowledge_base_dir + "/CropRecommendationKnowledge", crop_recommendation_collection, crop_recommendation_index, chunk_size=1000, chunk_overlap=30)
@@ -56,11 +56,11 @@ disease_detection_pdf_dir = "DiseaseDetectionPdfs"
 # print("-----------")
 # print(res)
 
-query = "For temperature somewhere around 35.644753°C having somewhat 36.76766% humidity and 136.777777mm rainfall suggest me crop"
-vectorStore, page = queryTextData(query, crop_recommendation_collection, crop_recommendation_index)
+# query = "For temperature somewhere around 35.644753°C having somewhat 36.76766% humidity and 136.777777mm rainfall suggest me crop"
+# vectorStore, page = queryTextData(query, crop_recommendation_collection, crop_recommendation_index)
 
 
-res = getBedrockResponseQA(query, vectorStore,getPromptForCropRecommendation())
-print("\nAI Response:")
-print("-----------")
-print(res)
+# res = getBedrockResponseQA(query, vectorStore,getPromptForCropRecommendation())
+# print("\nAI Response:")
+# print("-----------")
+# print(res)

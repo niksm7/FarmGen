@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
       // Display "typing..." message
       const typingIndicator = addMessageToChat("bot-message", "Typing...");
+
+      // Clear the input
+      userInput.value = "";
   
       // Send request to Django API
       const response = await fetchDjangoApi(userMessage);
@@ -20,13 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
       typingIndicator.remove();
       addMessageToChat("bot-message", response);
   
-      // Clear the input
-      userInput.value = "";
     });
   
     async function fetchDjangoApi(message) {
       try {
-        const response = await fetch("http://localhost:8000/api/chatbot-response/", {
+        const response = await fetch("/getchatbotresponse/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
         if (response.ok) {
           const data = await response.json();
-          return data.response;  // Assuming response is the key containing the chatbot's message
+          return data.response;
         } else {
           console.error("Error from server", response.statusText);
           return "Something went wrong, please try again.";

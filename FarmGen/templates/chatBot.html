@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FarmGenBot</title>
-  <link rel="stylesheet" href="/media/css/chatbot.css">
-</head>
-<body>
+{% extends 'basic.html' %}
+
+{% block basic_title %} Srot :: Home{% endblock basic_title %}
+
+{% block basic_head %}
+
+    <link rel="stylesheet" href="/media/css/chatbot.css">
+
+{% endblock basic_head %}
+
+{% block basic_body %}
+<main>
   <div class="chat-container">
     <div class="chat-header">
       <h2>FarmGen Smart Bot</h2>
@@ -17,7 +20,10 @@
       <button id="send-btn">Send</button>
     </div>
   </div>
+<main>
 
-  <script src="/media/js/chatbot.js"></script>
-</body>
-</html>
+{% endblock basic_body %}
+
+{% block basic_scripts %}
+<script src="/media/js/chatbot.js"></script>
+{% endblock basic_scripts %}

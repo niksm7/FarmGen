@@ -3,11 +3,12 @@ import numpy as np
 import boto3
 import requests
 from langchain import hub
+from langchain.agents import AgentExecutor, create_react_agent
 from langchain_core.tools import Tool
-from intialize import *
+from farmapp.intialize import *
 from random import randint
 from langchain.agents import initialize_agent
-from queryVectorData import queryTextData
+from farmapp.queryVectorData import queryTextData
 
 def get_coordinates(*args, **kwargs):
     # Fetch from the farmers data saved from the session storage
@@ -43,13 +44,13 @@ def get_crop_recommendation(*args, **kwargs):
 
 def get_best_farming_practices(*args, **kwargs):
     _, docs = queryTextData("best farming practices", farm_best_practices_collection, farm_best_practices_index)
-    return docs[0]
+    return docs[0].page_content
 
 def intializeAgent():
     crop_recommendation_tool = Tool(
             name="CropRecommendation",
             func=get_crop_recommendation,
-            description="Provides the reocommended crop to grow"
+            description="Provides the recommendation for the crop to grow"
         )
 
     get_coordinates_tool = Tool(
@@ -61,7 +62,7 @@ def intializeAgent():
     climate_details_tool = Tool(
         name="GetClimateDetails",
         func=get_climate_details,
-        description="Provides the climate conditions"
+        description="Provides the climate details based on the location coordinates"
     )
 
     climate_details_tool = Tool(
@@ -72,19 +73,19 @@ def intializeAgent():
 
     tools = [crop_recommendation_tool, get_coordinates_tool, climate_details_tool]
 
-    agent = initialize_agent(
-        llm=llm_model,
+    prompt = hub.pull("hwchase17/react")
+    agent = create_react_agent(llm_model, tools, prompt, stop_sequence=True)
+    agent_executor = AgentExecutor.from_agent_and_tools(
+        agent=agent,
         tools=tools,
-        agent_type="openai-functions"
+        verbost=True,
+        handle_parsing_errors=True
     )
-    return agent
+    return agent_executor
 
 def getAgentResponse(given_query):
     # user_query = "Can you recommend me a crop to grow based on my climate conditions?"
     # user_query = "Can you best practice to grow healthy crops?"
     agent = intializeAgent()
-    response = agent(given_query)
-    print("The response is: ", response)
-    return response
-
-print(getAgentResponse("Can you recommend me a crop to grow based on my climate conditions?"))
+    response = agent.invoke({"input": given_query})
+    return response.get("output")

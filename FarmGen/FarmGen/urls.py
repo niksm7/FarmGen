@@ -23,7 +23,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name="home"),
+    path('chatbot/', views.chatBotDisplay, name="chatBotDisplay"),
     path('detectdisease/', views.detectDisease, name="detectDisease"),
     path('uploadimagedisease/', views.uploadImageDisease, name="uploadImageDisease"),
-    path('getbedrockresponse/', views.getBedrockResponse, name="getBedrockResponse")
+    path('getbedrockresponse/', views.getBedrockResponse, name="getBedrockResponse"),
+    path('getchatbotresponse/', views.getChatbotResponse, name="getChatbotResponse")
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
