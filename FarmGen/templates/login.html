@@ -27,7 +27,14 @@
                 <input type="text" placeholder="Full Name" name="fullname" required/>
                 <input type="email" placeholder="Email" name="email" required/>
                 <input type="password" placeholder="Password" name="password" required/>
-                # Add list for preferred languages
+                <input type="text" id="location_coordinates" placeholder="Location Coordinates" name="location_coordinates" required/>
+                <label for="language">Choose a language:</label>
+                <select name="language" id="language">
+                    {% for lang in all_languages %}
+                    <option value="{{lang}}">{{lang}}</option>
+                    {% endfor %}
+                  </select>
+                  <br>
                 <button style="background-color: #F0BB62;border:#F0BB62" type="submit">Sign Up</button>
             </form>
         </div>

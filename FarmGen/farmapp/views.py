@@ -83,6 +83,7 @@ def getChatbotResponse(request):
         request_content = json.loads(request.body.decode('utf-8'))
         query = request_content.get("message")
         try:
+            print("Location coordinates are: ", request.session.get('location_coors'))
             res = getAgentResponse(query, request.session.get('location_coors'))
             return JsonResponse({"status":"success", "response": res})
         except Exception as e:
@@ -107,14 +108,17 @@ def handleLogin(request):
             message = "Invalid Credentials"
             return render(request, 'login.html', {"msg": message})
         
-        user = WebUser.objects.filter(id=request.session['uid'])[0]
         session_id = user['localId']
+        user = WebUser.objects.filter(id=session_id)[0]
         request.session['email'] = email
         request.session['usrname'] = email.split("@")[0]
         request.session['uid'] = str(session_id)
         request.session['location_coors'] = user.location_coors
         request.session['language'] = user.language
-    return render(request, 'login.html')
+        
+        return HttpResponseRedirect(reverse("detectDisease"))
+
+    return render(request, 'login.html', {"all_languages": aws_polly_voice_data.keys()})
 
 def handleSignUpUser(request):
     if request.method == "POST":
