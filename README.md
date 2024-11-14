@@ -1,3 +1,6 @@
+Deployed at: http://18.212.95.248:8000/
+Please Reach out to this email if any issues with signup: nikhilsmankani@gmail.com
+
 ## 🌱 Inspiration
 
 Agriculture faces immense challenges today — from unpredictable climate changes to crop diseases that threaten yields. We wanted to harness the power of AI to empower farmers with insights and tools that help them make informed, data-driven decisions. Our vision for FarmGen is to provide farmers with real-time, easy-to-use AI support to boost productivity, manage crop health, and ultimately contribute to global food security. 🌍
