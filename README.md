@@ -1,5 +1,6 @@
 Deployed at: http://18.212.95.248:8000/
-Please Reach out to this email if any issues with signup: nikhilsmankani@gmail.com
+
+Please Reach out to this email if you have any issues with signup: nikhilsmankani@gmail.com
 
 ## 🌱 Inspiration
 
